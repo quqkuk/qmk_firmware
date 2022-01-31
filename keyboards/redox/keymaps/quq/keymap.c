@@ -23,8 +23,8 @@ enum custom_keycodes {
 #define QQ_SYRP  LT(_SYMB, KC_RPRN)
 #define QQ_AJPU  LT(_ADJUST, KC_PGUP)
 #define QQ_AJED  LT(_ADJUST, KC_END)
-#define QQ_CTAT  LCTL_T(KC_ASTR)
-#define QQ_ALBS  LALT_T(KC_BSLS)
+#define QQ_ALAT  LALT_T(KC_ASTR)
+#define QQ_CTBS  LCTL_T(KC_BSLS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT ,KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,QQ_AJPU ,KC_PGDN ,        KC_HOME ,QQ_AJED ,KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH ,KC_RSFT ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-     KC_LGUI ,KC_PPLS ,KC_PMNS ,QQ_CTAT ,     QQ_ALBS ,    KC_SPC ,KC_ENT  ,        KC_BSPC  ,KC_DEL  ,    KC_RALT ,     KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RGHT 
+     KC_LGUI ,KC_PPLS ,KC_PMNS ,QQ_ALAT ,     QQ_CTBS ,    KC_ENT  ,KC_SPC  ,        KC_BSPC  ,KC_DEL  ,    KC_RALT ,     KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RGHT 
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   ),
 
