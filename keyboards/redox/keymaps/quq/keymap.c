@@ -19,12 +19,17 @@ enum custom_keycodes {
 // Shortcut to make keymap more readable
 #define QQ_NVTD  LT(_NAV, KC_GRV)
 #define QQ_NVMIN LT(_NAV, KC_MINS)
-#define QQ_SYLP  LT(_SYMB, KC_LPRN)
-#define QQ_SYRP  LT(_SYMB, KC_RPRN)
+#define QQ_SYLP  TD(QQ_TD_SYLP)
+#define QQ_SYRP  TD(QQ_TD_SYRP)
 #define QQ_AJPU  LT(_ADJUST, KC_PGUP)
 #define QQ_AJED  LT(_ADJUST, KC_END)
 #define QQ_ALAT  LALT_T(KC_ASTR)
 #define QQ_CTBS  LCTL_T(KC_BSLS)
+
+enum tap_dance_keycodes {
+	QQ_TD_SYLP,
+	QQ_TD_SYRP,
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -83,4 +88,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      GUI_TOG ,XXXXXXX ,XXXXXXX ,XXXXXXX ,     XXXXXXX ,    XXXXXXX ,XXXXXXX ,        XXXXXXX ,XXXXXXX ,    XXXXXXX ,     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX 
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   )
+};
+
+// Tap Dances
+// Tap for Parenthesis, Hold for Symbols Layer
+static bool turnedLayerOn = false;
+
+bool isHolding(qk_tap_dance_state_t *state){
+	return state->pressed && !state->interrupted;
+}
+
+void symb_parens_tap(qk_tap_dance_state_t *state, void *leftParen){
+	const bool holding = isHolding(state);
+	if(!holding)
+		tap_code16(*((bool*)leftParen) ? KC_LPRN : KC_RPRN);
+}
+
+void symb_parens_end(qk_tap_dance_state_t *state, void *leftParen){
+	const bool holding = isHolding(state);
+	if(holding){
+		layer_on(_SYMB);
+		turnedLayerOn = true;
+	}
+}
+
+void symb_parens_reset(qk_tap_dance_state_t *state, void *leftParen){
+	if(turnedLayerOn){
+		layer_off(_SYMB);
+		turnedLayerOn = false;
+	}
+}
+
+static const bool LEFT_PAREN = true;
+static const bool RIGHT_PAREN = true;
+qk_tap_dance_action_t tap_dance_actions[] = {
+	[QQ_TD_SYLP] = { .fn = {symb_parens_tap, symb_parens_end, symb_parens_reset}, .user_data = (void*)&LEFT_PAREN, },
+	[QQ_TD_SYRP] = { .fn = {symb_parens_tap, symb_parens_end, symb_parens_reset}, .user_data = (void*)&RIGHT_PAREN, },
 };

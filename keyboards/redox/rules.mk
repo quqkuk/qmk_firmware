@@ -5,6 +5,7 @@ BOOTMAGIC_ENABLE = no       # Enable Bootmagic Lite
 MAGIC_ENABLE = yes          # Enable Magic
 MOUSEKEY_ENABLE = yes       # Mouse keys
 EXTRAKEY_ENABLE = yes       # Audio control and System control
+TAP_DANCE_ENABLE = yes      # Tap Dance feature
 CONSOLE_ENABLE = no         # Console for debug
 COMMAND_ENABLE = yes        # Commands for debug and configuration
 NKRO_ENABLE = yes           # Enable N-Key Rollover
