@@ -43,4 +43,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LAYER_STATE_8BIT
 
 /* Shorten Tap Dance Taps Duration */
-#define TAPPING_TERM 125
+#define TAPPING_TERM 130
