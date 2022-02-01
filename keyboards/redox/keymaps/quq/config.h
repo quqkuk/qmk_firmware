@@ -41,3 +41,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Use 8 bit to track layer */
 #define LAYER_STATE_8BIT
+
+/* Shorten Tap Dance Taps Duration */
+#define TAPPING_TERM 175
