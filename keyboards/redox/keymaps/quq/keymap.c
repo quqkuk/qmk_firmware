@@ -94,22 +94,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Tap for Parenthesis, Hold for Symbols Layer
 static bool turnedLayerOn = false;
 
-bool isHolding(qk_tap_dance_state_t *state){
-	return state->pressed && !state->interrupted;
-}
-
-void symb_parens_tap(qk_tap_dance_state_t *state, void *leftParen){
-	const bool holding = isHolding(state);
-	if(!holding)
-		tap_code16(*((bool*)leftParen) ? KC_LPRN : KC_RPRN);
-}
-
 void symb_parens_end(qk_tap_dance_state_t *state, void *leftParen){
-	const bool holding = isHolding(state);
+	const bool holding = state->pressed && !state->interrupted;
 	if(holding){
 		layer_on(_SYMB);
 		turnedLayerOn = true;
-	}
+	} else
+		tap_code16(*((bool*)leftParen) ? KC_LPRN : KC_RPRN);
 }
 
 void symb_parens_reset(qk_tap_dance_state_t *state, void *leftParen){
@@ -120,8 +111,8 @@ void symb_parens_reset(qk_tap_dance_state_t *state, void *leftParen){
 }
 
 static const bool LEFT_PAREN = true;
-static const bool RIGHT_PAREN = true;
+static const bool RIGHT_PAREN = false;
 qk_tap_dance_action_t tap_dance_actions[] = {
-	[QQ_TD_SYLP] = { .fn = {symb_parens_tap, symb_parens_end, symb_parens_reset}, .user_data = (void*)&LEFT_PAREN, },
-	[QQ_TD_SYRP] = { .fn = {symb_parens_tap, symb_parens_end, symb_parens_reset}, .user_data = (void*)&RIGHT_PAREN, },
+	[QQ_TD_SYLP] = { .fn = {NULL, symb_parens_end, symb_parens_reset}, .user_data = (void*)&LEFT_PAREN, },
+	[QQ_TD_SYRP] = { .fn = {NULL, symb_parens_end, symb_parens_reset}, .user_data = (void*)&RIGHT_PAREN, },
 };
