@@ -31,6 +31,17 @@ enum tap_dance_keycodes {
 	QQ_TD_SYRP,
 };
 
+// Per-key Tapping threshold
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t*){
+	switch(keycode){
+		case QQ_SYLP:
+		case QQ_SYRP:
+			return 125;
+		default:
+			return 175;
+	}
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
