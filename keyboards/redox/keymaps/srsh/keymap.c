@@ -17,25 +17,24 @@ enum custom_keycodes {
 };
 
 // Shortcut to make keymap more readable
-#define QQ_NVTD  LT(_NAV, KC_GRV)
-#define QQ_NVMIN LT(_NAV, KC_MINS)
-#define QQ_SYLP  TD(QQ_TD_SYLP)
-#define QQ_SYRP  TD(QQ_TD_SYRP)
-#define QQ_AJPU  LT(_ADJUST, KC_PGUP)
-#define QQ_AJED  LT(_ADJUST, KC_END)
-#define QQ_ALAT  LALT_T(KC_ASTR)
-#define QQ_CTBS  LCTL_T(KC_BSLS)
+#define SH_NVTD  LT(_NAV, KC_GRV)
+#define SH_NVMIN LT(_NAV, KC_MINS)
+#define SH_SYLP  TD(SH_TD_SYLP)
+#define SH_SYRP  TD(SH_TD_SYRP)
+#define SH_AJPU  LT(_ADJUST, KC_PGUP)
+#define SH_AJED  LT(_ADJUST, KC_END)
+#define SH_CTBS  LCTL_T(KC_BSLS)
 
 enum tap_dance_keycodes {
-	QQ_TD_SYLP,
-	QQ_TD_SYRP,
+	SH_TD_SYLP,
+	SH_TD_SYRP,
 };
 
 // Per-key Tapping threshold
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t*){
 	switch(keycode){
-		case QQ_SYLP:
-		case QQ_SYRP:
+		case SH_SYLP:
+		case SH_SYRP:
 			return 125;
 		default:
 			return 175;
@@ -46,15 +45,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     QQ_NVTD ,KC_1    ,KC_2    ,KC_3    ,KC_4    ,KC_5    ,                                            KC_6    ,KC_7    ,KC_8    ,KC_9    ,KC_0    ,QQ_NVMIN,
+     SH_NVTD ,KC_1    ,KC_2    ,KC_3    ,KC_4    ,KC_5    ,                                            KC_6    ,KC_7    ,KC_8    ,KC_9    ,KC_0    ,SH_NVMIN,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_TAB  ,KC_Q    ,KC_W    ,KC_E    ,KC_R    ,KC_T    ,QQ_SYLP ,                          QQ_SYRP ,KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P    ,KC_EQL  ,
+     KC_TAB  ,KC_Q    ,KC_W    ,KC_E    ,KC_R    ,KC_T    ,SH_SYLP ,                          SH_SYRP ,KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P    ,KC_EQL  ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_ESC  ,KC_A    ,KC_S    ,KC_D    ,KC_F    ,KC_G    ,KC_LBRC ,                          KC_RBRC ,KC_H    ,KC_J    ,KC_K    ,KC_L    ,KC_SCLN ,KC_QUOT ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT ,KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,QQ_AJPU ,KC_PGDN ,        KC_HOME ,QQ_AJED ,KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH ,KC_RSFT ,
+     KC_LSFT ,KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,SH_AJPU ,KC_PGDN ,        KC_HOME ,SH_AJED ,KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH ,KC_RSFT ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-     KC_LGUI ,KC_PPLS ,KC_PMNS ,QQ_ALAT ,     QQ_CTBS ,    KC_SPC  ,KC_ENT  ,        KC_BSPC ,KC_DEL  ,    KC_RALT ,     KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RGHT 
+     KC_LGUI ,KC_PPLS ,KC_PMNS ,KC_LALT ,     SH_CTBS ,    KC_SPC  ,KC_ENT  ,        KC_BSPC ,KC_DEL  ,    KC_RALT ,     KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RGHT 
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   ),
 
@@ -124,6 +123,6 @@ void symb_parens_reset(qk_tap_dance_state_t *state, void *leftParen){
 static const bool LEFT_PAREN = true;
 static const bool RIGHT_PAREN = false;
 qk_tap_dance_action_t tap_dance_actions[] = {
-	[QQ_TD_SYLP] = { .fn = {NULL, symb_parens_end, symb_parens_reset}, .user_data = (void*)&LEFT_PAREN, },
-	[QQ_TD_SYRP] = { .fn = {NULL, symb_parens_end, symb_parens_reset}, .user_data = (void*)&RIGHT_PAREN, },
+	[SH_TD_SYLP] = { .fn = {NULL, symb_parens_end, symb_parens_reset}, .user_data = (void*)&LEFT_PAREN, },
+	[SH_TD_SYRP] = { .fn = {NULL, symb_parens_end, symb_parens_reset}, .user_data = (void*)&RIGHT_PAREN, },
 };

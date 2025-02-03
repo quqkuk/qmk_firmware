@@ -19,13 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Change USB Descriptor for fun */
 #undef VENDOR_ID
-#define VENDOR_ID       0x5151 // "QQ"
+#define VENDOR_ID       0x5348 // "SH"
 #undef PRODUCT_ID
 #define PRODUCT_ID      0x5244 // "RD"
 #undef DEVICE_VER
 #define DEVICE_VER      0x0100
 #undef MANUFACTURER
-#define MANUFACTURER    quq
+#define MANUFACTURER    Saoirse
 #undef PRODUCT
 #define PRODUCT         Redox Keyboard
 
