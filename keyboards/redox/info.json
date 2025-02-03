@@ -1,0 +1,15 @@
+{
+  "manufacturer": "Saoirse",
+  "usb": {
+    "vid": "0x4D44",
+    "device_version": "1.0.0"
+  },
+  "features":{
+    "rgblight": false
+  },
+  "split": {
+    "transport": {
+      "protocol": "i2c"
+    }
+  }
+}

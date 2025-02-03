@@ -17,21 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-/* Change USB Descriptor for fun */
-#undef VENDOR_ID
-#define VENDOR_ID       0x5348 // "SH"
-#undef PRODUCT_ID
-#define PRODUCT_ID      0x5244 // "RD"
-#undef DEVICE_VER
-#define DEVICE_VER      0x0100
-#undef MANUFACTURER
-#define MANUFACTURER    Saoirse
-#undef PRODUCT
-#define PRODUCT         Redox Keyboard
-
-/* Use I2C for comunication */
-#define USE_I2C
-
 /* Read handedness from EEPROM */
 #define EE_HANDS
 
@@ -39,8 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
 
-/* Use 8 bit to track layer */
-#define LAYER_STATE_8BIT
+// /* Use 8 bit to track layer */
+// #define LAYER_STATE_8BIT
 
 /* Enable per-key tap duration */
 #define TAPPING_TERM_PER_KEY
